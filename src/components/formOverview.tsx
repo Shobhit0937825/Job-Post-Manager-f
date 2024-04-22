@@ -12,34 +12,86 @@ function FormOverview({
   statement,
   min,
   max,
-  multiSelect
+  multiSelect,
+  showQualification,
+  showJobTitle,
+  showIntro,
+  showRole,
+  showSalary,
+  showStatement,
+  showCompany,
+  showLocation,
+  showJobType,
+  showYear,
+  showMultiselecter,
+  ...otherProps
 }: any) {
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto">
       <div className="flex gap-5">
-      <h1 className="text-2xl font-bold mb-4">{postTitle.value ? postTitle.value : "JOB TITLE"}</h1>
-      {multiSelect &&  multiSelect.map((item: any, index: number) => (
-        // console.log(item)
-        <span key={index} className="text-white bg-blue-500 px-2 py-1 rounded mr-2">
-          {item}
-        </span>
-      ))}
-        
-       
+        <h1 className="text-2xl font-bold mb-4">
+        {showJobTitle && (postTitle.value ?  ` ${postTitle.value}` : "JOB TITLE")}
+        </h1>
+        {multiSelect &&
+          multiSelect.map((item: any, index: number) => (
+            // console.log(item)
+            <span
+              key={index}
+              className="text-white bg-blue-500 px-2 py-1 rounded mr-2"
+            >
+              {otherProps.item} {item}
+            </span>
+          ))}
       </div>
-      <h3 className="text-lg font-semibold mb-2">Introduction: {introduction}</h3>
+      {showIntro && <h3 className="text-lg font-semibold mb-2">
+        Introduction: {otherProps.introduction} {introduction}
+      </h3>}
+      
       <div className="mb-4">
-        <h3 className="text-lg font-semibold mb-2">Role And Responsibility: {role}</h3>
+        {showRole && (
+        <h3 className="text-lg font-semibold mb-2">
+          Role And Responsibility: {otherProps.role} {role}
+        </h3>)}
       </div>
+      {showYear && (
+
       <h3 className="text-lg font-semibold mb-2">
-        Preferred Experience:  {min} to {max} yrs
+        Preferred Experience: {otherProps.min} {min} to {otherProps.max} {max} yrs
       </h3>
-      <h3 className="text-lg font-semibold mb-2">Qualifications: {qualification.value}</h3>
-      <h3 className="text-lg font-semibold mb-2">Salary Range: {salary.value}</h3>
-      <h3 className="text-lg font-semibold mb-2">Concluding Statement: {statement}</h3>
-      <h3 className="text-lg font-semibold mb-2">Company: {companyName.value}</h3>
-      <h3 className="text-lg font-semibold mb-2">Location: {jobLocation.value}</h3>
-      <h3 className="text-lg font-semibold mb-2">Job Type: {selectedJobType}</h3>
+      )}
+
+      {showQualification && (
+        <h3 className="text-lg font-semibold mb-2">
+          Qualifications: {otherProps.qualification} {qualification.value}
+        </h3>
+      )}
+      {showSalary && (
+      <h3 className="text-lg font-semibold mb-2">
+        Salary Range: {otherProps.salary} {salary.value}
+      </h3>)}
+      {showStatement && (
+      <h3 className="text-lg font-semibold mb-2">
+        Concluding Statement: {otherProps.statement} {statement}
+      </h3>
+      )}
+      {showCompany && (
+
+      <h3 className="text-lg font-semibold mb-2">
+        Company: {otherProps.companyName} {companyName.value}
+      </h3>
+      )}
+      {showLocation && (
+
+      <h3 className="text-lg font-semibold mb-2">
+        Location: {otherProps.jobLocation} {jobLocation.value}
+      </h3>
+      )}
+      {showJobType && (
+
+      <h3 className="text-lg font-semibold mb-2">
+        Job Type: {otherProps.selectedJobType} {selectedJobType}
+      </h3>
+      )}
     </div>
   );
 }

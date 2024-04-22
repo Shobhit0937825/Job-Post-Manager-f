@@ -5,6 +5,7 @@ import TypeSelect from "@/components/job-selectBox";
 import MultipleSelectBox from "@/components/multiple-selectBox";
 import FormOverview from "@/components/formOverview";
 import SwitchTest from "@/components/toggleButton";
+import TabComponent from "@/components/tab";
 
 function App() {
   const jobTypeOptions = [
@@ -17,10 +18,14 @@ function App() {
   const jobOptions = [
     { value: "5 Days Working", label: "5 Days Working" },
     { value: "Remote Job", label: "Remote Job" },
-    { value: "Remote Job", label: "Remote Job" },
-    { value: "Remote Job", label: "Remote Job" },
   ];
-
+  const tabs = [
+    { name: "Job 1", content: <div>Content for Job 1</div> },
+    { name: "Job 2", content: <div>Content for Job 2</div> },
+    { name: "Job 3", content: <div>Content for Job 3</div> },
+    { name: "New Job", content: <div>New Job Form</div> },
+  ];
+  const [activeTab, setActiveTab] = useState(tabs[0].name);
   const [postTitle, setPostTitle] = useState("");
   const [introduction, setIntroduction] = useState("");
   const [role, setRole] = useState("");
@@ -33,12 +38,24 @@ function App() {
   const [multiSelect, setMultiSelect] = useState("");
   const [selectedJobType, setSelectedJobType] = useState("");
   const [switchValue, setSwitchValue] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  const [isCheckedJobTitle, setIsCheckedJobTitle] = useState(false);
+  const [isCheckedIntro, setIsCheckedIntro] = useState(false);
+  const [isCheckedRole, setIsCheckedRole] = useState(false);
+  const [isCheckedSalary, setIsCheckedSalary] = useState(false);
+  const [isCheckedStatement, setIsCheckedStatement] = useState(false);
+  const [isCheckedCompany, setIsCheckedCompany] = useState(false);
+  const [isCheckedLocation, setIsCheckedLocation] = useState(false);
+  const [isCheckedYear, setIsCheckedYear] = useState(false);
+  const [isCheckedType, setIsCheckedType] = useState(false);
+  const [isCheckedMultiSelecter, setIsCheckedMultiSelecter] = useState(false);
 
   const handleSwitchChange = () => {
     setSwitchValue((prevValue) => !prevValue);
   };
-  console.log(switchValue, "---switchValue---");
-
+  const handleTabClick = (tabName: string) => {
+    setActiveTab(tabName);
+  };
   const [statement, setStatement] = useState("");
 
   const handleStatement = (event: any) => {
@@ -58,7 +75,21 @@ function App() {
       <div className="lg:w-2/4 p-6 mb-3">
         <h1 className="text-3xl font-bold mb-6">Job Post Manager</h1>
         <form>
+          <div>
+            <TabComponent
+              tabs={tabs}
+              activeTab={activeTab}
+              onTabClick={handleTabClick}
+            />
+          </div>
           <div className="flex justify-between">
+            <input
+              type="checkbox"
+              checked={isCheckedJobTitle}
+              onChange={(e) => setIsCheckedJobTitle(e.target.checked)}
+              className="ml-2"
+            />
+
             <InputField
               setData={setPostTitle}
               type="text"
@@ -106,9 +137,15 @@ function App() {
               )}
             </div>
           </div>
+          <h2 className="text-lg font-semibold mb-2">Introduction</h2>
 
-          <div className="mb-4">
-            <h2 className="text-lg font-semibold mb-2">Introduction</h2>
+          <div className="mb-4 flex gap-4">
+            <input
+              type="checkbox"
+              checked={isCheckedIntro}
+              onChange={(e) => setIsCheckedIntro(e.target.checked)}
+              className="ml-2"
+            />
             <textarea
               value={introduction}
               onChange={handleIntro}
@@ -116,49 +153,112 @@ function App() {
               className="w-full rounded px-3 py-2 border focus:outline-none focus:ring focus:border-blue-300"
             />
           </div>
-          <div className="mb-4">
-            <h2 className="text-lg font-semibold mb-2">
-              Role and Responsibility
-            </h2>
-            <textarea
-              value={role}
-              onChange={handleRole}
-              placeholder="Role"
-              className="w-full rounded px-3 py-2 border focus:outline-none focus:ring focus:border-blue-300"
+          <h2 className="text-lg font-semibold mb-2">
+            Role and Responsibility
+          </h2>
+          <div className="mb-4 ">
+            <div className="flex gap-4">
+              <input
+                type="checkbox"
+                checked={isCheckedRole}
+                onChange={(e) => setIsCheckedRole(e.target.checked)}
+                className="ml-2"
+              />
+
+              <textarea
+                value={role}
+                onChange={handleRole}
+                placeholder="Role"
+                className="w-full rounded px-3 py-2 border focus:outline-none focus:ring focus:border-blue-300"
+              />
+            </div>
+          </div>
+          <div className="flex gap-4">
+            <input
+              type="checkbox"
+              checked={isCheckedYear}
+              onChange={(e) => setIsCheckedYear(e.target.checked)}
+              className="ml-2"
+            />
+            <Select setMin={setMin} setMax={setMax} className="mb-4" />
+          </div>
+          <div className="flex gap-4 mb-2">
+            <input
+              type="checkbox"
+              checked={isChecked}
+              onChange={(e) => setIsChecked(e.target.checked)}
+              className="ml-2"
+            />
+            <InputField
+              setData={setQualification}
+              type="text"
+              placeholder="Qualification"
+              className={`mb-4 ${isChecked ? "" : "hidden"}`} // Hide the input field if checkbox is not checked
             />
           </div>
-          <Select setMin={setMin} setMax={setMax} className="mb-4" />
-          <InputField
-            setData={setQualification}
-            type="text"
-            placeholder="Qualification"
-            className="mb-4"
-          />
-          <InputField
-            setData={setSalary}
-            type="text"
-            placeholder="Salary Range"
-            className="mb-4"
-          />
-          <textarea
-            value={statement}
-            onChange={handleStatement}
-            placeholder="Call to action Concluding Statement"
-            className="w-full rounded px-3 py-2 border focus:outline-none focus:ring focus:border-blue-300 mb-4"
-          />
-          <InputField
-            setData={setCompanyName}
-            type="text"
-            placeholder="Company Name"
-            className="mb-4"
-          />
-          <InputField
-            setData={setJobLocation}
-            type="text"
-            placeholder="Job Location"
-            className="mb-4"
-          />
-          <div className="mb-4">
+          <div className="flex gap-4 mb-2">
+            <input
+              type="checkbox"
+              checked={isCheckedSalary}
+              onChange={(e) => setIsCheckedSalary(e.target.checked)}
+              className="ml-2"
+            />
+            <InputField
+              setData={setSalary}
+              type="text"
+              placeholder="Salary Range"
+              className="mb-4"
+            />
+          </div>
+          <div className="flex gap-4 mb-2">
+            <input
+              type="checkbox"
+              checked={isCheckedStatement}
+              onChange={(e) => setIsCheckedStatement(e.target.checked)}
+              className="ml-2"
+            />
+            <textarea
+              value={statement}
+              onChange={handleStatement}
+              placeholder="Call to action Concluding Statement"
+              className="w-full rounded px-3 py-2 border focus:outline-none focus:ring focus:border-blue-300 mb-4"
+            />
+          </div>
+          <div className="flex gap-4 mb-2">
+            <input
+              type="checkbox"
+              checked={isCheckedCompany}
+              onChange={(e) => setIsCheckedCompany(e.target.checked)}
+              className="ml-2"
+            />
+            <InputField
+              setData={setCompanyName}
+              type="text"
+              placeholder="Company Name"
+              className="mb-4"
+            />
+          </div>
+          <div className="flex gap-4 mb-2">
+            <input
+              type="checkbox"
+              checked={isCheckedLocation}
+              onChange={(e) => setIsCheckedLocation(e.target.checked)}
+              className="ml-2"
+            />
+            <InputField
+              setData={setJobLocation}
+              type="text"
+              placeholder="Job Location"
+              className="mb-4"
+            />
+          </div>
+          <div className="flex gap-4 mb-2">
+            <input
+              type="checkbox"
+              checked={isCheckedType}
+              onChange={(e) => setIsCheckedType(e.target.checked)}
+              className="ml-2"
+            />
             <TypeSelect
               options={jobTypeOptions}
               setSelectedJobType={setSelectedJobType}
@@ -169,10 +269,18 @@ function App() {
             <h2 className="text-lg font-semibold mb-2">
               Select Multiple Job Options by help of CTRL key
             </h2>
-            <MultipleSelectBox
-              options={jobOptions}
-              setMultiSelect={setMultiSelect}
-            />
+            <div className="flex gap-4">
+              <input
+                type="checkbox"
+                checked={isCheckedMultiSelecter}
+                onChange={(e) => setIsCheckedMultiSelecter(e.target.checked)}
+                className="ml-2"
+              />
+              <MultipleSelectBox
+                options={jobOptions}
+                setMultiSelect={setMultiSelect}
+              />
+            </div>
           </div>
         </form>
       </div>
@@ -190,6 +298,17 @@ function App() {
           max={max}
           statement={statement}
           multiSelect={multiSelect}
+          showQualification={isChecked}
+          showJobTitle={isCheckedJobTitle}
+          showIntro={isCheckedIntro}
+          showRole={isCheckedRole}
+          showSalary={isCheckedSalary}
+          showStatement={isCheckedStatement}
+          showCompany={isCheckedCompany}
+          showLocation={isCheckedLocation}
+          showJobType={isCheckedType}
+          showYear={isCheckedYear}
+          showMultiselecter={isCheckedMultiSelecter}
         />
       </div>
     </div>

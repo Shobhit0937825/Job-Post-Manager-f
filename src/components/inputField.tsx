@@ -12,18 +12,17 @@ function InputField({
   inputError,
 }: any) {
   const [error, setError] = useState("");
-  const [isChecked, setIsChecked] = useState(false); // State to track checkbox status
 
   // Function to handle input change
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setData({ value: value, isValid: value.length > 3 }); // Set isValid based on value length
-    setIsChecked(value.length > 3); // Set checkbox status based on value length
+    // setIsChecked(value.length > 3); // Set checkbox status based on value length
   };
 
   return (
     <div className="flex items-center gap-2">
-      <input type="checkbox" checked={isChecked} readOnly className="ml-2" />
+      {/* <input type="checkbox" checked={isChecked} readOnly className="ml-2" /> */}
       <input
         maxLength={maxLength}
         type={type}
