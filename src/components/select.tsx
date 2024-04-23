@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 
 function Select({setMin, setMax}:any) {
-    const [minYear, setMinYear] = useState(""); 
-    const [maxYear, setMaxYear] = useState(""); 
+    const [minYear, setMinYear] = useState<any>(""); 
+    const [maxYear, setMaxYear] = useState<any>(""); 
   
     // Constants for the range of years
     const minAllowedYear = 0;
     const maxAllowedYear = 10;
-    console.log(maxAllowedYear,'--maxAllowedYear---')
   
     const years = [];
     for (let year = maxAllowedYear; year >= minAllowedYear; year--) {

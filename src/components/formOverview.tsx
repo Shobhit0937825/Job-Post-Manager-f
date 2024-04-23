@@ -34,7 +34,6 @@ function FormOverview({
         </h1>
         {multiSelect &&
           multiSelect.map((item: any, index: number) => (
-            // console.log(item)
             <span
               key={index}
               className="text-white bg-blue-500 px-2 py-1 rounded mr-2"

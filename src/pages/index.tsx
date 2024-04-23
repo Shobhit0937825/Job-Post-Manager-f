@@ -20,12 +20,13 @@ function App() {
     { value: "Remote Job", label: "Remote Job" },
   ];
   const tabs = [
-    { name: "Job 1", content: <div>Content for Job 1</div> },
-    { name: "Job 2", content: <div>Content for Job 2</div> },
-    { name: "Job 3", content: <div>Content for Job 3</div> },
-    { name: "New Job", content: <div>New Job Form</div> },
+    { name: "New Job" },
+    { name: "Job 1" },
+    { name: "Job 2" },
+    { name: "Job 3" },
   ];
-  const [activeTab, setActiveTab] = useState(tabs[0].name);
+
+  const [activeTab, setActiveTab] = useState("");
   const [postTitle, setPostTitle] = useState("");
   const [introduction, setIntroduction] = useState("");
   const [role, setRole] = useState("");
