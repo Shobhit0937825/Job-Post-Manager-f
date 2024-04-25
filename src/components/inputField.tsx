@@ -10,15 +10,14 @@ function InputField({
   pattern,
   numberOnly,
   inputError,
+  formData,
 }: any) {
-  const [error, setError] = useState("");
 
-  // Function to handle input change
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    setData({ value: value, isValid: value.length > 3 }); // Set isValid based on value length
-    // setIsChecked(value.length > 3); // Set checkbox status based on value length
+    setData({ value: value, isValid: value.length > 3 });
   };
+  console.log(formData,'formData')
 
   return (
     <div className="flex items-center gap-2">

@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 
 function TypeSelect({ options, setSelectedJobType, selectedJobType }: any) {
-//   const [selectedJobType, setSelectedJobType] = useState(""); // State to store selected job type
 
-  // Event handler to update state when job type selection changes
   const handleJobTypeChange = (event: any) => {
     setSelectedJobType(event.target.value);
   };
 
   return (
     <div className="mt-4">
-  {/* <label htmlFor="jobType"className="text-lg font-semibold mb-2">Select Job Type :
-  </label> */}
   <select
     id="jobType"
     value={selectedJobType}

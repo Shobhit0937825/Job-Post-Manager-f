@@ -4,7 +4,6 @@ function Select({setMin, setMax}:any) {
     const [minYear, setMinYear] = useState<any>(""); 
     const [maxYear, setMaxYear] = useState<any>(""); 
   
-    // Constants for the range of years
     const minAllowedYear = 0;
     const maxAllowedYear = 10;
   
@@ -13,23 +12,36 @@ function Select({setMin, setMax}:any) {
       years.push(year);
     }
   
-    // Event handler for changing the minimum year
     const handleMinYearChange = (event: any) => {
-      setMinYear(parseInt(event.target.value));
+      setMinYear(event.target.value);
       setMin(parseInt(event.target.value))
     };
   
-    // Event handler for changing the maximum year
     const handleMaxYearChange = (event : any) => {
-      setMaxYear(parseInt(event.target.value));
+      setMaxYear(event.target.value);
       setMax(parseInt(event.target.value))
       
     };
   
   return (
-    <div>
-            <label htmlFor="minYear"> Experience Range (years) : Min</label>
-            <select id="minYear" value={minYear} onChange={handleMinYearChange}>
+         <div className='flex justify-items-stretch'>
+            <label htmlFor="minYear"> Experience Range (years) : </label>
+            
+            <div className='px-2 '>
+            <label htmlFor="minYear" className='pr-2'> Min</label>
+            <select className='border pr-2 ' id="minYear" value={minYear} onChange={handleMinYearChange}>
+            <option value="">Select</option>
+              {years.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
+            </div>
+
+            <div className='px-2 '>
+            <label htmlFor="maxYear" className='pr-2'> Max</label>
+            <select className='border pr-2 '  id="maxYear" value={maxYear} onChange={handleMaxYearChange}>
               <option value="">Select</option>
               {years.map((year) => (
                 <option key={year} value={year}>
@@ -37,15 +49,7 @@ function Select({setMin, setMax}:any) {
                 </option>
               ))}
             </select>
-            <label htmlFor="maxYear">Max</label>
-            <select id="maxYear" value={maxYear} onChange={handleMaxYearChange}>
-              <option value="">Select</option>
-              {years.map((year) => (
-                <option key={year} value={year}>
-                  {year}
-                </option>
-              ))}
-            </select>
+            </div>
           </div>
   )
 }

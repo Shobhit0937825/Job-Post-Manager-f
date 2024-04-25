@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 
 function MultipleSelectBox({ options, setMultiSelect }: any) {
-  const [selectedOptions, setSelectedOptions] = useState<any>([]); // State to store selected options
+  const [selectedOptions, setSelectedOptions] = useState<any>([]);
 
-  // Event handler to update state when options selection changes
   const handleOptionsChange = (event: any) => {
     const selectedValues: any = Array.from(event.target.selectedOptions, option => option.value);
     setSelectedOptions(selectedValues);

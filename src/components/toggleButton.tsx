@@ -5,7 +5,7 @@ interface SwitchProps {
   onChange: () => void;
 }
 
-const SwitchTest: React.FC<SwitchProps> = (props) => {
+const ToggleButton: React.FC<SwitchProps> = (props) => {
   const toggleClass = "transform translate-x-6";
 
   return (
@@ -15,4 +15,4 @@ const SwitchTest: React.FC<SwitchProps> = (props) => {
   );
 };
 
-export default SwitchTest;
+export default ToggleButton;

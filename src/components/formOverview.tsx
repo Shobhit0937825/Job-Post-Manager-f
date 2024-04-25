@@ -1,30 +1,7 @@
 import React from "react";
 
-function FormOverview({
-  selectedJobType,
-  postTitle,
-  introduction,
-  role,
-  salary,
-  qualification,
-  companyName,
-  jobLocation,
-  statement,
-  min,
-  max,
-  multiSelect,
-  showQualification,
-  showJobTitle,
-  showIntro,
-  showRole,
-  showSalary,
-  showStatement,
-  showCompany,
-  showLocation,
-  showJobType,
-  showYear,
-  showMultiselecter,
-  ...otherProps
+function FormOverview({ selectedJobType, postTitle, introduction, role, salary, qualification, companyName, jobLocation, statement, min, max, multiSelect, showQualification,showJobTitle, showIntro,showRole,showSalary,showStatement,showCompany,
+   showLocation, showJobType, showYear, showMultiselecter,
 }: any) {
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto">
@@ -38,57 +15,57 @@ function FormOverview({
               key={index}
               className="text-white bg-blue-500 px-2 py-1 rounded mr-2"
             >
-              {otherProps.item} {item}
+              {item}
             </span>
           ))}
       </div>
       {showIntro && <h3 className="text-lg font-semibold mb-2">
-        Introduction: {otherProps.introduction} {introduction}
+        Introduction: {introduction}
       </h3>}
       
       <div className="mb-4">
         {showRole && (
         <h3 className="text-lg font-semibold mb-2">
-          Role And Responsibility: {otherProps.role} {role}
+          Role And Responsibility: {role}
         </h3>)}
       </div>
       {showYear && (
 
       <h3 className="text-lg font-semibold mb-2">
-        Preferred Experience: {otherProps.min} {min} to {otherProps.max} {max} yrs
+        Preferred Experience:  {min} to {max} yrs
       </h3>
       )}
 
       {showQualification && (
         <h3 className="text-lg font-semibold mb-2">
-          Qualifications: {otherProps.qualification} {qualification.value}
+          Qualifications: {qualification.value}
         </h3>
       )}
       {showSalary && (
       <h3 className="text-lg font-semibold mb-2">
-        Salary Range: {otherProps.salary} {salary.value}
+        Salary Range:  {salary.value}
       </h3>)}
       {showStatement && (
       <h3 className="text-lg font-semibold mb-2">
-        Concluding Statement: {otherProps.statement} {statement}
+        Concluding Statement:  {statement}
       </h3>
       )}
       {showCompany && (
 
       <h3 className="text-lg font-semibold mb-2">
-        Company: {otherProps.companyName} {companyName.value}
+        Company:  {companyName.value}
       </h3>
       )}
       {showLocation && (
 
       <h3 className="text-lg font-semibold mb-2">
-        Location: {otherProps.jobLocation} {jobLocation.value}
+        Location:  {jobLocation.value}
       </h3>
       )}
       {showJobType && (
 
       <h3 className="text-lg font-semibold mb-2">
-        Job Type: {otherProps.selectedJobType} {selectedJobType}
+        Job Type: {selectedJobType}
       </h3>
       )}
     </div>
